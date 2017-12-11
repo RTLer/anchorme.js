@@ -16,9 +16,11 @@ export interface Options {
     ips?: boolean;
     emails?: boolean;
     urls?: boolean;
+    allUrls?: boolean;
     files?: boolean;
     truncate?: number | [number, number];
     defaultProtocol?: string | Function;
+    replaceUrl?: null | Function;
     list?: boolean;
     exclude?: (URLObj) => boolean;
 }

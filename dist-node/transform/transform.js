@@ -47,6 +47,8 @@ function url2tag(fragment, options) {
     }
     if (options.attributes === undefined)
         options.attributes = [];
+    if (options.replaceUrl)
+        return options.replaceUrl(original);
     return "<a href=\"" + href + "\" " + options.attributes.map(function (attribute) {
         if (typeof attribute === 'function') {
             var name = (attribute(fragment) || {}).name;

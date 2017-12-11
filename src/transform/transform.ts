@@ -53,6 +53,8 @@ function url2tag (fragment:URLObj,options:Options){
 	}
 
 	if(options.attributes === undefined) options.attributes = [];
+	if(options.replaceUrl)
+        return options.replaceUrl(original);
 
 	return `<a href="${href}" ${options.attributes.map((attribute)=>{
 		if(typeof attribute === 'function') {

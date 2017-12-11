@@ -19,9 +19,11 @@ export interface Options {
 	ips?:boolean,
 	emails?:boolean,
 	urls?:boolean,
+    allUrls?:boolean,
 	files?:boolean,
 	truncate?:number|[number,number],
 	defaultProtocol?:string|Function,
+    replaceUrl?:null|Function,
 	list?:boolean,
 	exclude?:(URLObj)=>boolean
 }
@@ -38,9 +40,11 @@ export function defaultOptions(options:Options|undefined):Options{
 			ips:true,
 			emails:true,
 			urls:true,
+            allUrls:true,
 			files:true,
 			truncate:Infinity,
 			defaultProtocol:"http://",
+            replaceUrl:null,
 			list:false
 		};
 	}
@@ -49,9 +53,11 @@ export function defaultOptions(options:Options|undefined):Options{
 	if(typeof options.ips 				!== "boolean") 	options.ips = true;
 	if(typeof options.emails 			!== "boolean") 	options.emails = true;
 	if(typeof options.urls 				!== "boolean") 	options.urls = true;
+	if(typeof options.allUrls 			!== "boolean") 	options.allUrls = true;
 	if(typeof options.files 			!== "boolean") 	options.files = true;
 	if(typeof options.list				!== "boolean") 	options.list = false;
 	if(typeof options.defaultProtocol 	!== "string" && typeof options.defaultProtocol 	!== "function") 	options.defaultProtocol = "http://";
+	if(typeof options.replaceUrl			!== "function") options.replaceUrl = null;
 	if(typeof options.truncate		 	!== "number" && (typeof options.truncate !== "object" || options.truncate === null)) options.truncate = Infinity;
 	return options;
 }
