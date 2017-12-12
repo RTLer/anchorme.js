@@ -65,9 +65,15 @@ export default function (inputArr:Array<string>, options:Options) {
 		if(!urlObj) return fragment;
 		
 		else {
-			if(!options.allUrls &&(inputArr[index-1] === "'" || inputArr[index-1] === '"') && ~htmlAttrs.indexOf(inputArr[index-2]))
-				return fragment;
-			return urlObj;
+			if(options.allUrls){
+                if((inputArr[index-1] === "'" || inputArr[index-1] === '"') && ~htmlAttrs.indexOf(inputArr[index-2]))
+                    return urlObj;
+                return fragment;
+            }else{
+                if((inputArr[index-1] === "'" || inputArr[index-1] === '"') && ~htmlAttrs.indexOf(inputArr[index-2]))
+                    return fragment;
+                return urlObj;
+            }
 		}
 	});
 }
