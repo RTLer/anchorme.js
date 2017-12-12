@@ -56,6 +56,11 @@ function default_1(inputArr, options) {
         if (!urlObj)
             return fragment;
         else {
+            if(options.allUrls){
+                if (!options.allUrls && (inputArr[index - 1] === "'" || inputArr[index - 1] === '"') && ~lists_1.htmlAttrs.indexOf(inputArr[index - 2]))
+                    return urlObj;
+                return fragment;
+            }
             if (!options.allUrls && (inputArr[index - 1] === "'" || inputArr[index - 1] === '"') && ~lists_1.htmlAttrs.indexOf(inputArr[index - 2]))
                 return fragment;
             return urlObj;
